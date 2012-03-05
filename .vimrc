@@ -65,7 +65,6 @@ set modeline
 set tabstop=2 " tab size = 2
 set shiftwidth=2 " soft space = 2
 set smarttab
-set expandtab " expand tabs
 set wildchar=9 " tab as completion character
 set showcmd
 set showmatch " Show matching braces.
