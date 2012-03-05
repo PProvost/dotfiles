@@ -83,7 +83,7 @@ set statusline=
 set statusline+=%-52F%h%m%r%w%y\ 
 set statusline+=\ %{&ff}\ 
 set statusline+=\ %{&fenc!=''?&fenc:&enc}\ 
-" set statusline+=\ %24{fugitive#statusline()}\ 
+set statusline+=\ %24{fugitive#statusline()}\ 
 " set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 
 "Use Q for formatting (no Ex mode)
