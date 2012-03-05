@@ -6,6 +6,9 @@
 "        add the line "source $HOME/.vim/.vimrc"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Use vim settings rather than vi settings (must be first line)
+set nocompatible
+
 " put my .vim first, then the vim install, then the after directory (for overrides)
 set runtimepath=~/.vim,$VIMRUNTIME,~/.vim/after
 
