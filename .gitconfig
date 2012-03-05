@@ -1,5 +1,18 @@
+[gui]
+	recentrepo = C:/World of Warcraft/Interface/AddOns/Titleist
+	recentrepo = C:/World of Warcraft/Interface/AddOns/Grunt
+	recentrepo = C:/World of Warcraft/Interface/AddOns/Cork
 [user]
 	name = PProvost
 	email = peter@provost.org
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[merge]
+	tool = kdiff3
+[mergetool "kdiff3"]
+	path = c:/Program Files (x86)/KDiff3/kdiff3.exe
 [core]
-	autocrlf = false
+	editor = gvim.exe
+	autocrlf = true
