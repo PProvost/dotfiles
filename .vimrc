@@ -1,3 +1,11 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" .vimrc
+" Author: Peter Provost <http://www.github.com/PProvost>
+" Credits: Too many to list
+" Usage: From your ~/.vimrc (unix/linux/mac) or your ~\_vimrc\_vimrc (Windows)
+"        add the line "source $HOME/.vim/.vimrc"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " put my .vim first, then the vim install, then the after directory (for overrides)
 set runtimepath=~/.vim,$VIMRUNTIME,~/.vim/after
 
