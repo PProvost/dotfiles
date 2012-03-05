@@ -34,7 +34,7 @@ if has("gui_running")
    set lines=45
 
    " No menus and no toolbar
-   set guioptions-=m
+   " set guioptions-=m
    set guioptions-=T
 endif
 
@@ -67,9 +67,23 @@ set smarttab
 set expandtab " expand tabs
 set wildchar=9 " tab as completion character
 set showcmd
-set virtualedit=block
-set clipboard+=unnamed  " Yanks go on clipboard instead.
 set showmatch " Show matching braces.
+
+" Allow selections beyond EOL when in block mode
+" (Since we load the mswin.vim file above, enter block mode with C-Q)
+set virtualedit=block
+
+" Use the windows clipboard for the unnamed register (default yanks, etc)
+set clipboard+=unnamed
+
+" Custom status line text
+set laststatus=2 " Always show the status line
+set statusline=
+set statusline+=%-52F%h%m%r%w%y\ 
+set statusline+=\ %{&ff}\ 
+set statusline+=\ %{&fenc!=''?&fenc:&enc}\ 
+set statusline+=\ %24{fugitive#statusline()}\ 
+" set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 
 "Use Q for formatting (no Ex mode)
 map Q gq
