@@ -29,7 +29,7 @@ set t_Co=256
 colorscheme slate
 
 if has("gui_running")
-   " set default size: 90x35
+   " set default size
    set columns=100
    set lines=45
 
@@ -44,6 +44,7 @@ if has("win32") || has("win64")
   set directory=$TMP
   if !has("gui_running")
     colorscheme slate
+    let &guioptions = substitute(&guioptions, "t", "", "g")
   end
 else
   set directory /tmp
