@@ -4,3 +4,9 @@
 [submodule "bundle/vim-ps1"]
 	path = bundle/vim-ps1
 	url = git://github.com/PProvost/vim-ps1.git
+[submodule ".vim/bundle/molokai"]
+	path = .vim/bundle/molokai
+	url = https://github.com/tomasr/molokai.git
+[submodule ".vim/bundle/liquid-carbon"]
+	path = .vim/bundle/liquid-carbon
+	url = https://github.com/vim-scripts/Liquid-Carbon.git
