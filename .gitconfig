@@ -1,0 +1,5 @@
+[user]
+	name = PProvost
+	email = peter@provost.org
+[core]
+	autocrlf = false
