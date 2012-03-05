@@ -26,28 +26,30 @@ let g:liquidcarbon_high_contrast = 1
 let g:molokai_original = 1
 let g:Powerline_cache_file = expand('$TMP/Powerline.cache')
 set t_Co=256
-colorscheme slate
+colorscheme molokai
 
 if has("gui_running")
-   " set default size
-   set columns=100
-   set lines=45
+	" set default size
+	set columns=100
+	set lines=45
 
-   " No menus and no toolbar
-   " set guioptions-=m
-   set guioptions-=T
+	" fonts
+	set guifont=Ubuntu\ Mono\ for\ Powerline:h12.5,Consolas:h11:cANSI,Lucida\ Console,Courier\ New,System
+
+	" No menus and no toolbar
+	" set guioptions-=m
+	set guioptions-=T
 endif
 
 " Platform specific stuff like fonts, temp dir, etc.
 if has("win32") || has("win64")
-  set guifont=Consolas:h11:cANSI,Lucida\ Console,Courier\ New,System
-  set directory=$TMP
-  if !has("gui_running")
-    colorscheme slate
-    let &guioptions = substitute(&guioptions, "t", "", "g")
-  end
+	set directory=$TMP
+	if !has("gui_running")
+		colorscheme slate
+		let &guioptions = substitute(&guioptions, "t", "", "g")
+	end
 else
-  set directory /tmp
+	set directory /tmp
 endif
 
 " Allow backspacing over everything
@@ -61,6 +63,7 @@ set number ruler
 set incsearch
 set autoindent
 set hlsearch
+set encoding=utf-8
 set modeline
 set tabstop=2 " tab size = 2
 set shiftwidth=2 " soft space = 2
@@ -78,12 +81,12 @@ set clipboard+=unnamed
 
 " Custom status line text
 set laststatus=2 " Always show the status line
-set statusline=
-set statusline+=%-52F%h%m%r%w%y\ 
-set statusline+=\ %{&ff}\ 
-set statusline+=\ %{&fenc!=''?&fenc:&enc}\ 
-set statusline+=\ %24{fugitive#statusline()}\ 
-" set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
+" Don't need these now that I'm using vim-powerline
+" set statusline=
+" set statusline+=%-52F%h%m%r%w%y\ 
+" set statusline+=\ %{&ff}\ 
+" set statusline+=\ %{&fenc!=''?&fenc:&enc}\ 
+" set statusline+=\ %24{fugitive#statusline()}\ 
 
 "Use Q for formatting (no Ex mode)
 map Q gq
