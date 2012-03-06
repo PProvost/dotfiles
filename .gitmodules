@@ -13,3 +13,9 @@
 [submodule ".vim/bundle/vim-powerline"]
 	path = .vim/bundle/vim-powerline
 	url = https://github.com/Lokaltog/vim-powerline.git
+[submodule "powershell/modules/posh-git"]
+	path = powershell/modules/posh-git
+	url = https://github.com/dahlbyk/posh-git.git
+[submodule "powershell/modules/posh-hg"]
+	path = powershell/modules/posh-hg
+	url = https://github.com/JeremySkinner/posh-hg.git
