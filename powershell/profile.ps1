@@ -14,6 +14,7 @@ $env:PSModulePath = "~/dotfiles/powershell/modules"
 
 # Load in support modules
 Import-Module "PowerTab" -ArgumentList "~\dotfiles\powershell\PowerTabConfig.xml"
+Import-Module "Pscx"
 Import-Module "Posh-Git"
 Import-Module "Posh-Hg"
 Import-Module "Posh-Svn"
