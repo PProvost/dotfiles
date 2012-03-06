@@ -19,3 +19,6 @@
 [submodule "powershell/modules/posh-hg"]
 	path = powershell/modules/posh-hg
 	url = https://github.com/JeremySkinner/posh-hg.git
+[submodule "powershell/modules/posh-svn"]
+	path = powershell/modules/posh-svn
+	url = git@github.com:PProvost/posh-svn.git

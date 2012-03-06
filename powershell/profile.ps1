@@ -21,7 +21,7 @@ Import-Module "Posh-Hg"
 # We'll make them global in case I want to use them interactively
 function prepend-path([string] $path) { 
 	if (-not [string]::IsNullOrEmpty($path)) {
-		if ( (test-path $path) -and (-not $env.PATH.contains($path)) {
+		if ( (test-path $path) -and (-not $env.PATH.contains($path)) ) {
 			$env:PATH = $path + ";" + $env:PATH;
 		}
 	}
@@ -30,7 +30,7 @@ function prepend-path([string] $path) {
 
 function append-path([string] $path) { 
 	if (-not [string]::IsNullOrEmpty($path)) {
-		if ( (test-path $path) -and (-not $env.PATH.contains($path)) {
+		if ( (test-path $path) -and (-not $env.PATH.contains($path)) ) {
 			$env:PATH += ";" + $path
 		}
 	}
