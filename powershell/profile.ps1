@@ -140,6 +140,8 @@ function prompt {
 	$wp = new-object 'System.Security.Principal.WindowsPrincipal' $wi;
 	$userLocation = $env:username + '@' + [System.Environment]::MachineName
 
+	# TODO Need to tweak this. Only **ADMIN** should be red
+
 	# Main prompt text
 	if ( $wp.IsInRole("Administrators") -eq 1 ) {
 		$color = "Red";
@@ -152,7 +154,7 @@ function prompt {
 	# Window title and main prompt text
 	$host.UI.RawUi.WindowTitle = $title
 	# Write-Host $userLocation -nonewline -foregroundcolor $color 
-	Write-Host (" " + $currentDirectoryName) -nonewline
+	Write-Host $title -nonewline -foregroundColor $color
 	
 	# And finally whatever version control info we have
   Write-VcsStatus
