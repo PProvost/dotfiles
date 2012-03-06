@@ -16,3 +16,4 @@
 [core]
 	editor = gvim.exe
 	autocrlf = true
+	excludesfile = ~/.gitignore
