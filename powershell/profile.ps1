@@ -141,20 +141,17 @@ function prompt {
 	$userLocation = $env:username + '@' + [System.Environment]::MachineName
 
 	# Main prompt text
-	if ( $wp.IsInRole("Administrators") -eq 1 )
-	{
+	if ( $wp.IsInRole("Administrators") -eq 1 ) {
 		$color = "Red";
 		$title = "**ADMIN** " + $currentDirectoryName
-	}
-	else
-	{
+	} else {
 		$color = "Green";
 		$title = $currentDirectoryName
 	}
 
 	# Window title and main prompt text
 	$host.UI.RawUi.WindowTitle = $title
-  Write-Host $userLocation -nonewline -foregroundcolor $color 
+	# Write-Host $userLocation -nonewline -foregroundcolor $color 
 	Write-Host (" " + $currentDirectoryName) -nonewline
 	
 	# And finally whatever version control info we have
