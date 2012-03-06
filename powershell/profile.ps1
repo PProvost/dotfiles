@@ -16,6 +16,7 @@ $env:PSModulePath = "~/dotfiles/powershell/modules"
 Import-Module "PowerTab" -ArgumentList "~\dotfiles\powershell\PowerTabConfig.xml"
 Import-Module "Posh-Git"
 Import-Module "Posh-Hg"
+Import-Module "Posh-Svn"
 
 # Path prepend/append helpers
 # We'll make them global in case I want to use them interactively
