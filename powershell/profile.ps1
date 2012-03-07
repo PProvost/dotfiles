@@ -4,167 +4,87 @@
 # Applies to all hosts, so only put things here that are global
 #
 
-
-# If $home isn't set, set it to ~ 
-# not sure this happens anymore, but what the hell
+# Setup the $home directory correctly
 if (-not $global:home) { $global:home = (resolve-path ~) }
 
+# And the scripts directory to wherever this file is located
+$scripts = resolve-path ~/dotfiles/powershell
+
 # Modules are stored here
-$env:PSModulePath = "~/dotfiles/powershell/modules"
+$env:PSModulePath = join-path $scripts modules
 
 # Load in support modules
-Import-Module "PowerTab" -ArgumentList "~\dotfiles\powershell\PowerTabConfig.xml"
-Import-Module "Pscx"
+Import-Module "Pscx" -Arg (join-path $scripts Pscx.UserPreferences.ps1)
+Import-Module "PowerTab" -ArgumentList (join-path $scripts PowerTabConfig.xml)
 Import-Module "Posh-Git"
 Import-Module "Posh-Hg"
 Import-Module "Posh-Svn"
 
-# Path prepend/append helpers
-# We'll make them global in case I want to use them interactively
-function prepend-path([string] $path) { 
-	if (-not [string]::IsNullOrEmpty($path)) {
-		if ( (test-path $path) -and (-not $env.PATH.contains($path)) ) {
-			$env:PATH = $path + ";" + $env:PATH;
-		}
-	}
-	$env:PATH
-}
-
-function append-path([string] $path) { 
-	if (-not [string]::IsNullOrEmpty($path)) {
-		if ( (test-path $path) -and (-not $env.PATH.contains($path)) ) {
-			$env:PATH += ";" + $path
-		}
-	}
-	$env:PATH
-}
-
 # Some helpers for working with the filesystem
-function remove-any([string] $glob) {
-	remove-item -recurse -force $glob
+function remove-allChildItems([string] $glob) { remove-item -recurse -force $glob }
+function get-childfiles { get-childitem | ? { -not $_.PsIsContainer } }
+function get-childcontainers { get-childitem | ? { $_.PsIsContainer } }
+
+# A "set" function that behaves more like the same
+# command in cmd and bash.
+function set-variableEx
+{
+	if ($args.Count -eq 0) { get-variable }
+	elseif ($args.Count -eq 1) { get-variable $args[0] }
+	else { invoke-expression "set-variable $args" }
 }
 
-function get-childfiles {
-	get-childitem | ? { -not $_.PsIsContainer }
+# Vim-style shorten-path originally from Tomas Restrepo
+# https://github.com/tomasr
+function get-vimShortPath([string] $path) {
+   $loc = $path.Replace($HOME, '~')
+	 $loc = $loc.Replace($env:WINDIR, '[Windows]')
+   # remove prefix for UNC paths
+   $loc = $loc -replace '^[^:]+::', ''
+   # make path shorter like tabs in Vim,
+   # handle paths starting with \\ and . correctly
+   return ($loc -replace '\\(\.?)([^\\])[^\\]*(?=\\)','\$1$2')
 }
 
-function get-childcontainers {
-	get-childitem | ? { $_.PsIsContainer }
-}
-
-function get-currentDirectoryName {
-	$path = ""
-	$pathbits = ([string]$pwd).split("\", [System.StringSplitOptions]::RemoveEmptyEntries)
-	if($pathbits.length -eq 1) {
-		$path = $pathbits[0] + "\"
-	} else {
-		$path = $pathbits[$pathbits.length - 1]
-	}
-	$path
-}
-
-
-########################################################
-# Custom 'cd' command to maintain directory history
-#
-# Usage:
-#  cd					no args means cd $home
-#  cd <name>	changes to that directory
-#  cd -l			list your directory history
-#  cd -#			change to the history entry specified by #
-#
-if( test-path alias:\cd ) { remove-item alias:\cd }
-$global:PWD = get-location;
-$global:CDHIST = [System.Collections.Arraylist]::Repeat($PWD, 1);
-function cd {
-	$cwd = get-location;
-	$l = $global:CDHIST.count;
-
-	if ($args.length -eq 0) { 
-		set-location $HOME;
-		$global:PWD = get-location;
-		$global:CDHIST.Remove($global:PWD);
-		if ($global:CDHIST[0] -ne $global:PWD) {
-			$global:CDHIST.Insert(0,$global:PWD);
-		}
-		$global:PWD;
-	}
-	elseif ($args[0] -like "-[0-9]*") {
-		$num = $args[0].Replace("-","");
-		$global:PWD = $global:CDHIST[$num];
-		set-location $global:PWD;
-		$global:CDHIST.RemoveAt($num);
-		$global:CDHIST.Insert(0,$global:PWD);
-		$global:PWD;
-	}
-	elseif ($args[0] -eq "-l") {
-		for ($i = $l-1; $i -ge 0 ; $i--) { 
-			"{0,6}  {1}" -f $i, $global:CDHIST[$i];
-		}
-	}
-	elseif ($args[0] -eq "-") { 
-		if ($global:CDHIST.count -gt 1) {
-			$t = $CDHIST[0];
-			$CDHIST[0] = $CDHIST[1];
-			$CDHIST[1] = $t;
-			set-location $global:CDHIST[0];
-			$global:PWD = get-location;
-		}
-		$global:PWD;
-	}
-	else { 
-		set-location "$args";
-	$global:PWD = pwd; 
-		for ($i = ($l - 1); $i -ge 0; $i--) { 
-			if ($global:PWD -eq $CDHIST[$i]) {
-				$global:CDHIST.RemoveAt($i);
-			}
-		}
-
-		$global:CDHIST.Insert(0,$global:PWD);
-		$global:PWD;
-	}
-
-	$global:PWD = get-location;
+function get-isAdminUser() {
+	$id = [Security.Principal.WindowsIdentity]::GetCurrent()
+	$wp = new-object Security.Principal.WindowsPrincipal($id)
+	return $wp.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 }
 
 function prompt {
-	$nextId = (get-history -count 1).Id + 1;
-	Write-Host "$($nextId): " -noNewLine
+	# Colors
+	$prefixColor = [ConsoleColor]::Cyan
+	$pathColor = [ConsoleColor]::Cyan
+	$pathBracesColor = [ConsoleColor]::DarkCyan
+	$hostNameColor = ?: { get-isAdminUser } { [ConsoleColor]::Red } { [ConsoleColor]::Green }
 
-	# Figure out current directory name
-	$currentDirectoryName = get-currentDirectoryName
+	$prefix = [char]0x221e + " "
+	$hostName = [net.dns]::GetHostName().ToLower()
+	$shortPath = get-vimShortPath(get-location)
 
-	# Admin mode prompt?
-	$wi = [System.Security.Principal.WindowsIdentity]::GetCurrent();
-	$wp = new-object 'System.Security.Principal.WindowsPrincipal' $wi;
-	$userLocation = $env:username + '@' + [System.Environment]::MachineName
-
-	# TODO Need to tweak this. Only **ADMIN** should be red
-
-	# Main prompt text
-	if ( $wp.IsInRole("Administrators") -eq 1 ) {
-		$color = "Red";
-		$title = "**ADMIN** " + $currentDirectoryName
-	} else {
-		$color = "Green";
-		$title = $currentDirectoryName
-	}
-
-	# Window title and main prompt text
-	$host.UI.RawUi.WindowTitle = $title
-	# Write-Host $userLocation -nonewline -foregroundcolor $color 
-	Write-Host $title -nonewline -foregroundColor $color
-	
-	# And finally whatever version control info we have
-  Write-VcsStatus
-
-	return "> "
+	write-host $prefix -noNewLine -foregroundColor $prefixColor
+	write-host $hostName -noNewLine -foregroundColor $hostNameColor
+	write-host ' {' -noNewLine -foregroundColor $pathBracesColor
+	write-host $shortPath -noNewLine -foregroundColor $pathColor
+	write-host '}' -noNewLine -foregroundColor $pathBracesColor
+	write-vcsStatus # from posh-git, posh-hg and posh-svn
+	return ' '
 }
 
+# UNIX friendly environment variables
+$env:EDITOR = "gvim.exe"
+$env:VISUAL = $env:EDITOR
+$env:GIT_EDITOR = $env:EDITOR
 
 # Global aliases
-set-alias rmd remove-any
+set-alias rmd remove-allChildItems
 set-alias lsf get-childfiles
 set-alias lsd get-childcontainers
+set-alias count measure-object
+if (test-path alias:\set) { remove-item alias:\set -force }
+set-alias set set-variableEx -force
+set-alias unset remove-variable
 
+# Path tweaks
+add-pathVariable $scripts
