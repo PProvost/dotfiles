@@ -8,8 +8,8 @@
 function invoke-userLogout { shutdown /l /t 0 }
 function invoke-systemShutdown { shutdown /s /t 5 }
 function invoke-systemReboot { shutdown /r /t 5 }
-function invoke-systemSleep { RunDll.exe PowrProf.dll,SetSuspendState }
-function invoke-terminalLock { RunDll.exe User32.dll,LockWorkStation }
+function invoke-systemSleep { RunDll32.exe PowrProf.dll,SetSuspendState }
+function invoke-terminalLock { RunDll32.exe User32.dll,LockWorkStation }
 
 # Aliases
 set-alias logout invoke-userLogout
