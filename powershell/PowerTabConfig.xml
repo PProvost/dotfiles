@@ -237,7 +237,7 @@
   <Config>
     <Category>Global</Category>
     <Name>ShowBanner</Name>
-    <Value>1</Value>
+    <Value>0</Value>
     <Type>Bool</Type>
   </Config>
   <Config>
