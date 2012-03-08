@@ -77,6 +77,15 @@ $env:EDITOR = "gvim.exe"
 $env:VISUAL = $env:EDITOR
 $env:GIT_EDITOR = $env:EDITOR
 
+# Helper function always open vim docs in existing instance, in a tab
+function gvim {
+	if ($args.Count -gt 0) {
+		& gvim.exe --remote-tab-silent "${args}"
+	} else {
+		& gvim.exe
+	}
+}
+
 # Global aliases
 set-alias rmd remove-allChildItems
 set-alias lsf get-childfiles
