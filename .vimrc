@@ -36,8 +36,14 @@ if has("gui_running")
 	" fonts
 	set guifont=Ubuntu\ Mono\ for\ Powerline:h12.5,Consolas:h11:cANSI,Lucida\ Console,Courier\ New,System
 
-	" No menus and no toolbar
-	" set guioptions-=m
+	" Rainbow Parentheses config
+	" https://github.com/kien/rainbow_parentheses.vim
+	au VimEnter * RainbowParenthesesToggle
+	au Syntax * RainbowParenthesesLoadRound
+	au Syntax * RainbowParenthesesLoadSquare
+	au Syntax * RainbowParenthesesLoadBraces
+
+	" No toolbar
 	set guioptions-=T
 endif
 

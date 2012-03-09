@@ -22,3 +22,6 @@
 [submodule "powershell/modules/posh-svn"]
 	path = powershell/modules/posh-svn
 	url = git@github.com:PProvost/posh-svn.git
+[submodule ".vim/bundle/rainbow_parentheses"]
+	path = .vim/bundle/rainbow_parentheses
+	url = https://github.com/kien/rainbow_parentheses.vim.git
