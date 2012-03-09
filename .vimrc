@@ -2,8 +2,6 @@
 " .vimrc
 " Author: Peter Provost <http://www.github.com/PProvost>
 " Credits: Too many to list
-" Usage: From your ~/.vimrc (unix/linux/mac) or your ~\_vimrc\_vimrc (Windows)
-"        add the line "source $HOME/.vim/.vimrc"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Use vim settings rather than vi settings (must be first line)
@@ -36,16 +34,17 @@ if has("gui_running")
 	" fonts
 	set guifont=Ubuntu\ Mono\ for\ Powerline:h12.5,Consolas:h11:cANSI,Lucida\ Console,Courier\ New,System
 
-	" Rainbow Parentheses config
-	" https://github.com/kien/rainbow_parentheses.vim
-	au VimEnter * RainbowParenthesesToggle
-	au Syntax * RainbowParenthesesLoadRound
-	au Syntax * RainbowParenthesesLoadSquare
-	au Syntax * RainbowParenthesesLoadBraces
-
 	" No toolbar
 	set guioptions-=T
 endif
+
+augroup vimrc_autocmds
+	" Auto start rainbow_parentheses
+	au VimEnter * RainbowParenthesesToggle
+	au BufEnter * RainbowParenthesesLoadRound
+	au BufEnter * RainbowParenthesesLoadSquare
+	au BufEnter * RainbowParenthesesLoadBraces
+augroup END
 
 " Platform specific stuff like fonts, temp dir, etc.
 if has("win32") || has("win64")

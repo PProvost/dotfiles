@@ -7,8 +7,9 @@
 # Setup the $home directory correctly
 if (-not $global:home) { $global:home = (resolve-path ~) }
 
-# And the scripts directory to wherever this file is located
-$scripts = resolve-path ~/dotfiles/powershell
+# A couple of directory variables for convenience
+$dotfiles = resolve-path ~/dotfiles/
+$scripts = join-path $dotfiles "powershell"
 
 # Modules are stored here
 $env:PSModulePath = join-path $scripts modules
