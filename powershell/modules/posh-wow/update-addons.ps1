@@ -17,7 +17,7 @@ param (
 );
 
 $scripts = (split-path $profile); # I keep my personal .PS1 files in the same folder as my $profile
-$manifestFile = join-path $scripts "update-addons.csv"
+$manifestFile = join-path $scripts "modules\posh-wow\update-addons.csv"
 $manifest = import-csv $manifestFile
 
 if (test-path "HKLM:\SOFTWARE\Wow6432Node\Blizzard Entertainment\World of Warcraft") {

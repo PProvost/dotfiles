@@ -47,6 +47,23 @@ function get-vimShortPath([string] $path) {
    return ($loc -replace '\\(\.?)([^\\])[^\\]*(?=\\)','\$1$2')
 }
 
+# Source: http://paradisj.blogspot.com/2010/03/powershell-how-to-get-script-directory.html       
+function get-scriptdirectory {   
+	if (Test-Path variable:\hostinvocation) {
+		$FullPath=$hostinvocation.MyCommand.Path
+	}	Else {
+		$FullPath=(get-variable myinvocation -scope script).value.Mycommand.Definition
+	}
+
+	if (Test-Path $FullPath) {
+		return (Split-Path $FullPath)
+	} Else {
+		$FullPath=(Get-Location).path
+		Write-Warning ("Get-ScriptDirectory: Powershell Host <" + $Host.name + "> may not be compatible with this function, the current directory <" + $FullPath + "> will be used.")
+		return $FullPath
+	}
+}
+
 function get-isAdminUser() {
 	$id = [Security.Principal.WindowsIdentity]::GetCurrent()
 	$wp = new-object Security.Principal.WindowsPrincipal($id)
