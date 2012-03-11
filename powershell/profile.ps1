@@ -7,6 +7,13 @@
 # Setup the $home directory correctly
 if (-not $global:home) { $global:home = (resolve-path ~) }
 
+# if (Test-Path variable:\hostinvocation) {
+# 	$FullPath=$hostinvocation.MyCommand.Path
+# }	Else {
+# 	$FullPath=(get-variable myinvocation -scope script).value.Mycommand.Definition
+# }	
+# write-host "Profile.ps1 source directory is $FullPath" -foregroundColor $([ConsoleColor]::Red)
+ 
 # A couple of directory variables for convenience
 $dotfiles = resolve-path ~/dotfiles/
 $scripts = join-path $dotfiles "powershell"
