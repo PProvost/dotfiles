@@ -6,10 +6,10 @@
 # Configuration
 $files = @{
 	curl			= 'http://curl.haxx.se/gknw.net/win32/curl-7.24.0-ssl-sspi-zlib-static-bin-w32.zip'
-	vim				= 'http://ftp.vim.org/pub/vim/pc/gvim73_46.exe'
-	sevenZip	= 'http://downloads.sourceforge.net/sevenzip/7z920-x64.msi'
 	git				= 'http://msysgit.googlecode.com/files/Git-1.7.9-preview20120201.exe'
 	kdiff3		= 'http://sourceforge.net/projects/kdiff3/files/latest/download?source=files'
+	sevenZip	= 'http://downloads.sourceforge.net/sevenzip/7z920-x64.msi'
+	gvim				= 'http://ftp.vim.org/pub/vim/pc/gvim73_46.exe'
 }
 $downloadDir = "~\Downloads\EnvSetup"
 
