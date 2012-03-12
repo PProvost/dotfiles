@@ -112,13 +112,7 @@ function gvim {
 }
 
 # Global aliases
-set-alias rmd remove-allChildItems
-set-alias lsf get-childfiles
-set-alias lsd get-childcontainers
-set-alias count measure-object
-if (test-path alias:\set) { remove-item alias:\set -force }
-set-alias set set-variableEx -force
-set-alias unset remove-variable
+. (join-path $scripts "Aliases.ps1")
 
 # Path tweaks
 add-pathVariable $scripts
