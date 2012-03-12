@@ -1,4 +1,9 @@
-# Update these as appropriate
+# Get-Programs.ps1
+# This is my personal "machine setup" file downloader
+# It is completely self contained so I can just download this single file
+# and run it to get my fav installers downloaded for me
+
+# Configuration
 $files = @{
 	curl			= 'http://curl.haxx.se/gknw.net/win32/curl-7.24.0-ssl-sspi-zlib-static-bin-w32.zip'
 	vim				= 'http://ftp.vim.org/pub/vim/pc/gvim73_46.exe'
