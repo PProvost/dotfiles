@@ -9,6 +9,7 @@ $files = @{
 	vim				= 'http://ftp.vim.org/pub/vim/pc/gvim73_46.exe'
 	sevenZip	= 'http://downloads.sourceforge.net/sevenzip/7z920-x64.msi'
 	git				= 'http://msysgit.googlecode.com/files/Git-1.7.9-preview20120201.exe'
+	kdiff3		= 'http://sourceforge.net/projects/kdiff3/files/latest/download?source=files'
 }
 $downloadDir = "~\Downloads\EnvSetup"
 
