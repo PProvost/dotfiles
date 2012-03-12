@@ -9,10 +9,18 @@
 	diff = auto
 	status = auto
 	branch = auto
+[diff]
+	tool = kdiff3
 [merge]
 	tool = kdiff3
+[difftool "kdiff3"]
+	path = c:/Program Files (x86)/KDiff3/kdiff3.exe
+	keepBackup = false
+	trustExitCode = false
 [mergetool "kdiff3"]
 	path = c:/Program Files (x86)/KDiff3/kdiff3.exe
+	keepBackup = false
+	trustExitCode = false
 [core]
 	editor = gvim.exe
 	autocrlf = true
