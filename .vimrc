@@ -32,7 +32,7 @@ if has("gui_running")
 	set lines=45
 
 	" fonts
-	set guifont=Ubuntu\ Mono\ for\ Powerline:h12.5,Consolas:h11:cANSI,Lucida\ Console,Courier\ New,System
+	set guifont=Consolas:h11:cANSI,Lucida\ Console,Courier\ New,System
 
 	" No toolbar
 	set guioptions-=T
