@@ -77,22 +77,29 @@ function get-isAdminUser() {
 	return $wp.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 }
 
+$global:promptTheme = @{
+	prefixColor = [ConsoleColor]::Cyan
+	pathColor = [ConsoleColor]::Cyan
+	pathBracesColor = [ConsoleColor]::DarkCyan
+	hostNameColor = ?: { get-isAdminUser } { [ConsoleColor]::Red } { [ConsoleColor]::Green }
+}
+
 function prompt {
 	# Colors
-	$prefixColor = [ConsoleColor]::Cyan
-	$pathColor = [ConsoleColor]::Cyan
-	$pathBracesColor = [ConsoleColor]::DarkCyan
-	$hostNameColor = ?: { get-isAdminUser } { [ConsoleColor]::Red } { [ConsoleColor]::Green }
+# 	$prefixColor = [ConsoleColor]::Cyan
+# 	$pathColor = [ConsoleColor]::Cyan
+# 	$pathBracesColor = [ConsoleColor]::DarkCyan
+# 	$hostNameColor = ?: { get-isAdminUser } { [ConsoleColor]::Red } { [ConsoleColor]::Green }
 
 	$prefix = [char]0x221e + " "
 	$hostName = [net.dns]::GetHostName().ToLower()
 	$shortPath = get-vimShortPath(get-location)
 
-	write-host $prefix -noNewLine -foregroundColor $prefixColor
-	write-host $hostName -noNewLine -foregroundColor $hostNameColor
-	write-host ' {' -noNewLine -foregroundColor $pathBracesColor
-	write-host $shortPath -noNewLine -foregroundColor $pathColor
-	write-host '}' -noNewLine -foregroundColor $pathBracesColor
+	write-host $prefix -noNewLine -foregroundColor $promptTheme.prefixColor
+	write-host $hostName -noNewLine -foregroundColor $promptTheme.hostNameColor
+	write-host ' {' -noNewLine -foregroundColor $promptTheme.pathBracesColor
+	write-host $shortPath -noNewLine -foregroundColor $promptTheme.pathColor
+	write-host '}' -noNewLine -foregroundColor $promptTheme.pathBracesColor
 	write-vcsStatus # from posh-git, posh-hg and posh-svn
 	return ' '
 }
