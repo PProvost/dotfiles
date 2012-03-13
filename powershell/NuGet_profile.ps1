@@ -13,4 +13,7 @@ function add-existingProject([string] $projFile) {
 	$dte.Solution.AddFromFile($projFile, $false)
 }
 
+function open-file([string] $path) {
+	$dte.ItemOperations.OpenFile( $(resolve-path $path) ) | out-null
+}
 		
