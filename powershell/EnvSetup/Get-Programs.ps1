@@ -5,11 +5,26 @@
 
 # Configuration
 $files = @{
+	# Curl for command line web downloads (x86)
 	curl			= 'http://curl.haxx.se/gknw.net/win32/curl-7.24.0-ssl-sspi-zlib-static-bin-w32.zip'
+
+	# MsysGit (x86)
 	git				= 'http://msysgit.googlecode.com/files/Git-1.7.9-preview20120201.exe'
+
+	# KDiff3 (x86)
 	kdiff3		= 'http://sourceforge.net/projects/kdiff3/files/latest/download?source=files'
+
+	# 7-zip (x64)
 	sevenZip	= 'http://downloads.sourceforge.net/sevenzip/7z920-x64.msi'
+
+	# Vim for Windows (works x86 and x64)
 	gvim				= 'http://ftp.vim.org/pub/vim/pc/gvim73_46.exe'
+
+	# msvcredist_x64 - required by HardLinkShellExt_x64
+	linkshellreq = 'http://download.microsoft.com/download/6/B/B/6BB661D6-A8AE-4819-B79F-236472F6070C/vcredist_x64.exe'
+
+	# HardLinkShellExt_x64 - Shows hard links and junctions in Windows Explorer
+	linkshell = 'http://schinagl.priv.at/nt/hardlinkshellext/HardLinkShellExt_X64.exe'
 }
 $downloadDir = "~\Downloads\EnvSetup"
 
