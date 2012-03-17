@@ -25,3 +25,6 @@
 [submodule ".vim/bundle/rainbow_parentheses"]
 	path = .vim/bundle/rainbow_parentheses
 	url = https://github.com/kien/rainbow_parentheses.vim.git
+[submodule "powershell/modules/PowerTab"]
+	path = powershell/modules/PowerTab
+	url = git@github.com:PProvost/PowerTab.git
