@@ -19,23 +19,20 @@ call pathogen#helptags()
 
 " appearance options
 set bg=dark
+set t_Co=256	" enable 256 color mode for colorschemes that use them
 let g:zenburn_high_Contrast = 1
 let g:liquidcarbon_high_contrast = 1
 let g:molokai_original = 1
 let g:Powerline_cache_file = expand('$TMP/Powerline.cache')
-set t_Co=256
-colorscheme molokai
 
 if has("gui_running")
-	" set default size
 	set columns=100
 	set lines=45
-
-	" fonts
 	set guifont=Consolas:h11:cANSI,Lucida\ Console,Courier\ New,System
-
-	" No toolbar
-	set guioptions-=T
+	set guioptions-=T " No toolbar
+	colorscheme molokai
+else
+	colorscheme slate
 endif
 
 augroup vimrc_autocmds
@@ -46,13 +43,9 @@ augroup vimrc_autocmds
 	au BufEnter * RainbowParenthesesLoadBraces
 augroup END
 
-" Platform specific stuff like fonts, temp dir, etc.
+" Platform specific stuff
 if has("win32") || has("win64")
 	set directory=$TMP
-	if !has("gui_running")
-		colorscheme slate
-		let &guioptions = substitute(&guioptions, "t", "", "g")
-	end
 else
 	set directory /tmp
 endif
@@ -69,7 +62,7 @@ set incsearch
 set autoindent
 set hlsearch
 set encoding=utf-8
-set modeline
+set modeline " turn on file specific modeline instruction parsing
 set tabstop=2 " tab size = 2
 set shiftwidth=2 " soft space = 2
 set smarttab
@@ -86,12 +79,6 @@ set clipboard+=unnamed
 
 " Custom status line text
 set laststatus=2 " Always show the status line
-" Don't need these now that I'm using vim-powerline
-" set statusline=
-" set statusline+=%-52F%h%m%r%w%y\ 
-" set statusline+=\ %{&ff}\ 
-" set statusline+=\ %{&fenc!=''?&fenc:&enc}\ 
-" set statusline+=\ %24{fugitive#statusline()}\ 
 
 "Use Q for formatting (no Ex mode)
 map Q gq
@@ -104,5 +91,4 @@ map! <MiddleMouse> <Nop>
 syntax on
 syntax sync fromstart
 filetype plugin indent on
-
 
