@@ -62,7 +62,7 @@ set incsearch
 set autoindent
 set hlsearch
 set encoding=utf-8
-set modeline " turn on file specific modeline instruction parsing
+set nomodeline " turn off file specific modeline instruction parsing
 set tabstop=2 " tab size = 2
 set shiftwidth=2 " soft space = 2
 set smarttab
