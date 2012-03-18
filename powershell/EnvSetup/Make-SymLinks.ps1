@@ -7,4 +7,5 @@ invoke-elevated {
 	new-symlink ~\.vimrc ..\..\.vimrc
 	new-symlink ~\.gitconfig ..\..\.gitconfig
 	new-symlink ~\.gitignore ..\..\.gitignore
+	new-symlink ~\.kdiff3rc ..\..\.kdiff3rc
 }
