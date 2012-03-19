@@ -13,7 +13,12 @@
 # .PARAMETER $count
 # 	Will cause the script to return the count instead of the filenames. This is more
 # 	efficient than using measure-object on the returned FileInfo objects.
-param( [string] $filepath, [switch] $count )
+#
+# .PARAMETER $all
+# 	When specified, will cause the script to return the FileInfo for the provided
+# 	filepath as well. When not specified, the file specified by the filepath 
+# 	parameter is not returned.
+param( [string] $filepath, [switch] $count, [switch] $all )
 
 $typeDef = @'
 using System;
@@ -124,9 +129,15 @@ namespace HardLinkEnumerator
 
 $type = Add-Type -TypeDefinition $typeDef
 
+$filepath = resolve-path $filepath
+
 if ($count) {
 	[HardLinkEnumerator.Kernel32Api]::GetFileLinkCount($filepath)
 } else {
 	$links = [HardLinkEnumerator.Kernel32Api]::GetFileSiblingHardLinks($filepath)
-	if ($links.Length > 0) { $links | get-childitem }
+	if ($all) {
+		$links | get-childitem 
+	} else {
+		$links | ? { $_ -ne $filepath } | get-childitem 
+	}
 }
