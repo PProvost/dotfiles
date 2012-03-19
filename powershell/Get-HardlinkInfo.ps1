@@ -127,5 +127,6 @@ $type = Add-Type -TypeDefinition $typeDef
 if ($count) {
 	[HardLinkEnumerator.Kernel32Api]::GetFileLinkCount($filepath)
 } else {
-	[HardLinkEnumerator.Kernel32Api]::GetFileSiblingHardLinks($filepath) | get-childitem
+	$links = [HardLinkEnumerator.Kernel32Api]::GetFileSiblingHardLinks($filepath)
+	if ($links.Length > 0) { $links | get-childitem }
 }
