@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Types>
+	<Type>
+		<Name>System.IO.FileSystemInfo</Name>
+		<Members>
+			<ScriptProperty>
+				<Name>IsHardLink</Name>
+				<GetScriptBlock>
+					if ($_.PsIsContainer) { $false } else {
+						if ((get-hardLinkInfo $this.Fullname -count) -gt 1) {
+							$true
+						} else { $false }
+					}
+				</GetScriptBlock>
+			</ScriptProperty>
+		</Members>
+	</Type>
+</Types>

@@ -129,15 +129,20 @@ namespace HardLinkEnumerator
 
 $type = Add-Type -TypeDefinition $typeDef
 
-$filepath = resolve-path $filepath
+function global:Get-HardlinkInfo( [string] $filepath, [switch] $count, [switch] $all ) {
+	$filepath = resolve-path $filepath
 
-if ($count) {
-	[HardLinkEnumerator.Kernel32Api]::GetFileLinkCount($filepath)
-} else {
-	$links = [HardLinkEnumerator.Kernel32Api]::GetFileSiblingHardLinks($filepath)
-	if ($all) {
-		$links | get-childitem 
+	if ($count) {
+		[HardLinkEnumerator.Kernel32Api]::GetFileLinkCount($filepath)
 	} else {
-		$links | ? { $_ -ne $filepath } | get-childitem 
+		$links = [HardLinkEnumerator.Kernel32Api]::GetFileSiblingHardLinks($filepath)
+		if ($all) {
+			$links | get-childitem 
+		} else {
+			$links | ? { $_ -ne $filepath } | get-childitem 
+		}
 	}
+
 }
+
+Get-HardLinkInfo @PSBoundParameters

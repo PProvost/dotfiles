@@ -28,6 +28,10 @@ Import-Module "Posh-Git"
 Import-Module "Posh-Hg"
 Import-Module "Posh-Svn"
 
+# Install my custom types and formatters
+Update-TypeData -PrependPath $scripts\MyTypes.ps1xml
+Update-FormatData -PrependPath $scripts\MyFormats.ps1xml
+
 # Some helpers for working with the filesystem
 function remove-allChildItems([string] $glob) { remove-item -recurse -force $glob }
 function get-childfiles { get-childitem | ? { -not $_.PsIsContainer } }
