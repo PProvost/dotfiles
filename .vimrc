@@ -35,14 +35,6 @@ else
 	colorscheme slate
 endif
 
-augroup vimrc_autocmds
-	" Auto start rainbow_parentheses
-	au VimEnter * RainbowParenthesesToggle
-	au BufEnter * RainbowParenthesesLoadRound
-	au BufEnter * RainbowParenthesesLoadSquare
-	au BufEnter * RainbowParenthesesLoadBraces
-augroup END
-
 " Platform specific stuff
 if has("win32") || has("win64")
 	set directory=$TMP
@@ -55,6 +47,7 @@ set backspace=indent,eol,start
 
 " Misc vim configuration tweaks
 set nobackup
+set nowritebackup
 set nowrap
 set history=50
 set number ruler
