@@ -1,4 +1,5 @@
 ## Get-WebFile (aka wget for PowerShell)
+## Modified to be an autoload function (becomes a global function the first time it is called)
 ##############################################################################################################
 ## Downloads a file or page from the web
 ## History:
@@ -13,7 +14,14 @@
 ## v2   - adds a ton of parsing to make the output pretty
 ##        added measuring the scripts involved in the command, (uses Tokenizer)
 ##############################################################################################################
-function Get-WebFile {
+param( 
+		$url = (Read-Host "The URL to download"),
+		$fileName = $null,
+		[switch]$Passthru,
+		[switch]$quiet
+)
+
+function global:Get-WebFile {
    param( 
       $url = (Read-Host "The URL to download"),
       $fileName = $null,
@@ -89,3 +97,5 @@ function Get-WebFile {
       ls $fileName
    }
 }
+
+Get-WebFile @PSBoundParameters
