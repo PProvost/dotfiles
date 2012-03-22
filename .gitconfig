@@ -10,11 +10,11 @@
 [merge]
 	tool = kdiff3
 [difftool "kdiff3"]
-	path = c:/Program Files (x86)/KDiff3/kdiff3.exe
+	path = kdiff3.exe
 	keepBackup = false
 	trustExitCode = false
 [mergetool "kdiff3"]
-	path = c:/Program Files (x86)/KDiff3/kdiff3.exe
+	path = kdiff3.exe
 	keepBackup = false
 	trustExitCode = false
 [core]
