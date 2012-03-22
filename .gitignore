@@ -1,4 +1,5 @@
 *.swp
-.vim/info/
 tags
 [Tt]humbs.db
+.vim/info/
+.vim/.netrwhist
