@@ -2,7 +2,6 @@
 # Because of how powershell works, some of thes are actually functions. :)
 
 set-alias count measure-object
-set-alias kdiff3 "c:\Program Files (x86)\KDiff3\kdiff3.exe"
 set-alias lsd get-childcontainers
 set-alias lsf get-childfiles
 set-alias rmd remove-allChildItems
