@@ -11,5 +11,3 @@ set-alias set set-variableEx -force
 set-alias sudo Invoke-Elevated
 set-alias unset remove-variable
 set-alias whence get-commandInfoEx
-
-function irssi { pushd 'C:\Program Files (x86)\Irssi';start 'irssi.cmd';popd }
