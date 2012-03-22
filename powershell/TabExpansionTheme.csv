@@ -1,0 +1,9 @@
+Name,Color
+BackColor,Black
+BorderBackColor,Black
+BorderColor,Gray
+BorderTextColor,DarkGray
+FilterColor,Gray
+SelectedBackColor,DarkGray
+SelectedTextColor,White
+TextColor,Gray
