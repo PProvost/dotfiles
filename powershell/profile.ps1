@@ -29,8 +29,8 @@ Import-Module "Posh-Hg"
 Import-Module "Posh-Svn"
 
 # Install my custom types and formatters
-Update-TypeData -PrependPath $scripts\MyTypes.ps1xml
-Update-FormatData -PrependPath $scripts\MyFormats.ps1xml
+# Update-TypeData -PrependPath $scripts\MyTypes.ps1xml
+# Update-FormatData -PrependPath $scripts\MyFormats.ps1xml
 
 # Some helpers for working with the filesystem
 function remove-allChildItems([string] $glob) { remove-item -recurse -force $glob }
@@ -89,12 +89,6 @@ $global:promptTheme = @{
 }
 
 function prompt {
-	# Colors
-# 	$prefixColor = [ConsoleColor]::Cyan
-# 	$pathColor = [ConsoleColor]::Cyan
-# 	$pathBracesColor = [ConsoleColor]::DarkCyan
-# 	$hostNameColor = ?: { get-isAdminUser } { [ConsoleColor]::Red } { [ConsoleColor]::Green }
-
 	$prefix = [char]0x221e + " "
 	$hostName = [net.dns]::GetHostName().ToLower()
 	$shortPath = get-vimShortPath(get-location)
@@ -109,18 +103,9 @@ function prompt {
 }
 
 # UNIX friendly environment variables
-$env:EDITOR = "gvim.exe"
+$env:EDITOR = "gvim"
 $env:VISUAL = $env:EDITOR
 $env:GIT_EDITOR = $env:EDITOR
-
-# Helper function always open vim docs in existing instance, in a tab
-function gvim {
-	if ($args.Count -gt 0) {
-		& gvim.exe --remote-tab-silent "${args}"
-	} else {
-		& gvim.exe
-	}
-}
 
 # Global aliases
 . (join-path $scripts "Aliases.ps1")
