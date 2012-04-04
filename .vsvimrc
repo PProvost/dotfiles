@@ -1,0 +1,3 @@
+set clipboard+=unnamed " Yanks to the clipboard plz
+set incsearch
+
