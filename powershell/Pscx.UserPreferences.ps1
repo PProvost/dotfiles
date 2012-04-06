@@ -55,6 +55,6 @@
 		TranscribeSession = $false    # Disabled by default for security and privacy reasons.
 		Utility           = $true
 		Vhd               = $true
-		Wmi               = $true
+		Wmi               = $false
 	}    
 }
