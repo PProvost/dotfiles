@@ -11,7 +11,7 @@ set nocompatible
 set runtimepath=~/.vim,$VIMRUNTIME,~/.vim/after
 
 " enable clipboard and other Win32 features
-source $VIMRUNTIME/mswin.vim
+" source $VIMRUNTIME/mswin.vim
 
 " Use pathogen.vim to manage and load plugins
 call pathogen#runtime_append_all_bundles()
