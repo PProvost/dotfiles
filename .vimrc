@@ -33,7 +33,7 @@ if has("gui_running")
 	colorscheme solarized
 else
 	set background=dark
-	colorscheme solarized
+	colorscheme slate
 endif
 
 " Platform specific stuff
