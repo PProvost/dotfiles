@@ -18,21 +18,22 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 " appearance options
-set bg=dark
-set t_Co=256	" enable 256 color mode for colorschemes that use them
 let g:zenburn_high_Contrast = 1
 let g:liquidcarbon_high_contrast = 1
 let g:molokai_original = 1
 let g:Powerline_cache_file = expand('$TMP/Powerline.cache')
 
 if has("gui_running")
+	set background=dark
+	set t_Co=256	" enable 256 color mode for colorschemes that use them
 	set columns=100
 	set lines=45
 	set guifont=Consolas:h11:cANSI,Lucida\ Console,Courier\ New,System
 	set guioptions-=T " No toolbar
-	colorscheme molokai
+	colorscheme solarized
 else
-	colorscheme slate
+	set background=light
+	colorscheme solarized
 endif
 
 " Platform specific stuff

@@ -28,3 +28,6 @@
 [submodule "powershell/modules/PowerTab"]
 	path = powershell/modules/PowerTab
 	url = git@github.com:PProvost/PowerTab.git
+[submodule ".vim/bundle/vim-colors-solarized"]
+	path = .vim/bundle/vim-colors-solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
