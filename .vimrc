@@ -32,7 +32,7 @@ if has("gui_running")
 	set guioptions-=T " No toolbar
 	colorscheme solarized
 else
-	set background=light
+	set background=dark
 	colorscheme solarized
 endif
 
