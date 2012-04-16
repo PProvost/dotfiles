@@ -34,3 +34,4 @@
 [submodule ".vim/bundle/sharp-indent"]
 	path = .vim/bundle/sharp-indent
 	url = git://github.com/PProvost/sharp-Indent.git
+	ignore = dirty
