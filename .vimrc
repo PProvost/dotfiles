@@ -63,6 +63,7 @@ set smarttab
 set wildchar=9 " tab as completion character
 set showcmd
 set showmatch " Show matching braces.
+set visualbell
 
 " Allow selections beyond EOL when in block mode
 " (Since we load the mswin.vim file above, enter block mode with C-Q)
