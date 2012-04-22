@@ -31,3 +31,7 @@
 	path = .vim/bundle/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive.git
 	ignore = dirty
+[submodule ".vim/bundle/vim-markdown-jekyll"]
+	path = .vim/bundle/vim-markdown-jekyll
+	url = git@github.com:PProvost/vim-markdown-jekyll.git
+	ignore = dirty
