@@ -18,9 +18,6 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 " appearance options
-let g:zenburn_high_Contrast = 1
-let g:liquidcarbon_high_contrast = 1
-let g:molokai_original = 1
 let g:Powerline_cache_file = expand('$TMP/Powerline.cache')
 
 if has("gui_running")

@@ -1,9 +1,15 @@
 [submodule ".vim/bundle/vim-ps1"]
 	path = .vim/bundle/vim-ps1
 	url = git@github.com:PProvost/vim-ps1.git
+	ignore = dirty
+[submodule ".vim/bundle/fugitive"]
+	path = .vim/bundle/fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+	ignore = dirty
 [submodule ".vim/bundle/vim-powerline"]
 	path = .vim/bundle/vim-powerline
 	url = https://github.com/Lokaltog/vim-powerline.git
+	ignore = dirty
 [submodule "powershell/modules/posh-git"]
 	path = powershell/modules/posh-git
 	url = https://github.com/dahlbyk/posh-git.git
@@ -13,12 +19,14 @@
 [submodule "powershell/modules/posh-svn"]
 	path = powershell/modules/posh-svn
 	url = git@github.com:PProvost/posh-svn.git
+	ignore = dirty
 [submodule "powershell/modules/PowerTab"]
 	path = powershell/modules/PowerTab
 	url = git@github.com:PProvost/PowerTab.git
 [submodule ".vim/bundle/vim-colors-solarized"]
 	path = .vim/bundle/vim-colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
+	ignore = dirty
 [submodule ".vim/bundle/sharp-indent"]
 	path = .vim/bundle/sharp-indent
 	url = git://github.com/PProvost/sharp-Indent.git

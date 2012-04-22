@@ -6,9 +6,15 @@
 	status = auto
 	branch = auto
 [diff]
-	tool = kdiff3
+	tool = p4merge
 [merge]
-	tool = kdiff3
+	tool = p4merge
+[difftool "p4merge"]
+	cmd = "p4merge.exe $LOCAL $REMOTE"
+[mergetool "p4merge"]
+	cmd = "p4merge $BASE $LOCAL $REMOTE $MERGED"
+	trustExitCode = true
+	keepBackup = false
 [difftool "kdiff3"]
 	path = kdiff3.exe
 	keepBackup = false
@@ -29,3 +35,5 @@
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 	type = cat-file -t
 	dump = cat-file -p
+[push]
+	default = upstream
