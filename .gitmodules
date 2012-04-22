@@ -35,3 +35,9 @@
 	path = .vim/bundle/vim-markdown-jekyll
 	url = git@github.com:PProvost/vim-markdown-jekyll.git
 	ignore = dirty
+[submodule ".vim/bundle/vim-buffalo"]
+	path = .vim/bundle/vim-buffalo
+	url = git://github.com/Raimondi/vim-buffalo.git
+[submodule ".vim/bundle/vimple"]
+	path = .vim/bundle/vimple
+	url = git://github.com/dahu/vimple.git
