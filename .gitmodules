@@ -27,3 +27,7 @@
 	path = .vim/bundle/sharp-indent
 	url = git://github.com/PProvost/sharp-Indent.git
 	ignore = dirty
+[submodule ".vim/bundle/vim-fugitive"]
+	path = .vim/bundle/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
+	ignore = dirty
