@@ -2,10 +2,6 @@
 	path = .vim/bundle/vim-ps1
 	url = git@github.com:PProvost/vim-ps1.git
 	ignore = dirty
-[submodule ".vim/bundle/fugitive"]
-	path = .vim/bundle/fugitive
-	url = https://github.com/tpope/vim-fugitive.git
-	ignore = dirty
 [submodule ".vim/bundle/vim-powerline"]
 	path = .vim/bundle/vim-powerline
 	url = https://github.com/Lokaltog/vim-powerline.git
