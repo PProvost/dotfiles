@@ -1,15 +1,6 @@
-[submodule ".vim/bundle/molokai"]
-	path = .vim/bundle/molokai
-	url = https://github.com/tomasr/molokai.git
-[submodule ".vim/bundle/liquid-carbon"]
-	path = .vim/bundle/liquid-carbon
-	url = https://github.com/vim-scripts/Liquid-Carbon.git
 [submodule ".vim/bundle/vim-ps1"]
 	path = .vim/bundle/vim-ps1
 	url = git@github.com:PProvost/vim-ps1.git
-[submodule ".vim/bundle/fugitive"]
-	path = .vim/bundle/fugitive
-	url = https://github.com/tpope/vim-fugitive.git
 [submodule ".vim/bundle/vim-powerline"]
 	path = .vim/bundle/vim-powerline
 	url = https://github.com/Lokaltog/vim-powerline.git
@@ -22,9 +13,6 @@
 [submodule "powershell/modules/posh-svn"]
 	path = powershell/modules/posh-svn
 	url = git@github.com:PProvost/posh-svn.git
-[submodule ".vim/bundle/rainbow_parentheses"]
-	path = .vim/bundle/rainbow_parentheses
-	url = https://github.com/kien/rainbow_parentheses.vim.git
 [submodule "powershell/modules/PowerTab"]
 	path = powershell/modules/PowerTab
 	url = git@github.com:PProvost/PowerTab.git
