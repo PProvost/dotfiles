@@ -1,0 +1,5 @@
+To configure your powershell prompt for solarized coloring
+Set the following two colors:
+
+Screen Background: 	rgb(0,43,54)
+Screen Text:				rgb(131,148,150)
