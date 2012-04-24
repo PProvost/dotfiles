@@ -37,3 +37,5 @@
 	dump = cat-file -p
 [push]
 	default = upstream
+[credential]
+	helper = !C:\\Users\\peterpr\\AppData\\Roaming\\GitCredStore\\git-credential-winstore.exe
