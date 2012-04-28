@@ -106,6 +106,7 @@ function prompt {
 $env:EDITOR = "gvim"
 $env:VISUAL = $env:EDITOR
 $env:GIT_EDITOR = $env:EDITOR
+$env:TERM = "msys"
 
 # Global aliases
 . (join-path $scripts "Aliases.ps1")
