@@ -17,6 +17,7 @@
 param( 
 		$url = (Read-Host "The URL to download"),
 		$fileName = $null,
+		$userAgent = $null,
 		[switch]$Passthru,
 		[switch]$quiet
 )
@@ -25,11 +26,13 @@ function global:Get-WebFile {
    param( 
       $url = (Read-Host "The URL to download"),
       $fileName = $null,
+			$userAgent = $null,
       [switch]$Passthru,
       [switch]$quiet
    )
    
    $req = [System.Net.HttpWebRequest]::Create($url);
+	 $req.UserAgent = $userAgent;
    $res = $req.GetResponse();
  
    if($fileName -and !(Split-Path $fileName)) {
