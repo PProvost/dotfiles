@@ -38,4 +38,4 @@
 [push]
 	default = upstream
 [credential]
-	helper = !~/AppData/Roaming/GitCredStore/git-credential-winstore
+	helper = !'C:\\Users\\Peterpr\\AppData\\Roaming\\GitCredStore\\git-credential-winstore.exe'
