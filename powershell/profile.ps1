@@ -18,6 +18,11 @@ if (-not $global:home) { $global:home = (resolve-path ~) }
 $dotfiles = resolve-path ~/dotfiles/
 $scripts = join-path $dotfiles "powershell"
 
+# A little holder for a few Wow-related directories :)
+$wow = new-object System.Object
+$wow | add-Member -type NoteProperty -name "Addons" -value "C:\World of Warcraft\Interface\Addons"
+$wow | add-Member -type NoteProperty -name "WTF" -value "C:\World of Warcraft\WTF"
+
 # Modules are stored here
 $env:PSModulePath = join-path $scripts modules
 
