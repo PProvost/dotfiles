@@ -5,6 +5,7 @@ invoke-elevated {
 	new-junction ~\Documents\WindowsPowerShell ..\
 
 	new-symlink ~\.vimrc ..\..\.vimrc
+	new-symlink ~\.vsvimrc ..\..\.vsvimrc
 	new-symlink ~\.gitconfig ..\..\.gitconfig
 	new-symlink ~\.gitignore ..\..\.gitignore
 	new-symlink ~\.kdiff3rc ..\..\.kdiff3rc
