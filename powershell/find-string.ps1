@@ -1,3 +1,28 @@
-$local:command_usage = "usage: find-string glob text"
-if ($args.length -lt 2) { return ($command_usage) }
-get-childitem -recurse -include $args[0] | select-string $args[1] | group-object Path | select-object @{Expression={ $_.Name.Substring((get-location).Path.Length + 1) }; Name="Filename" }, @{Expression={ $_.Group | foreach-object { $_.LineNumber} }; Name="Line Numbers"} | format-table -Autosize
+<#
+.Synopsis
+	Searches text files by pattern and displays the results.
+.Description
+	Searches text files by pattern and displays the results.
+.Notes
+  Based on versions from http://weblogs.asp.net/whaggard/archive/2007/03/23/powershell-script-to-find-strings-and-highlight-them-in-the-output.aspx and from http://poshcode.org/426
+  Makes use of Out-ColorMatchInfo found at http://poshcode.org/1095.
+	Source: http://poshcode.org/1096
+#>
+
+#requires -version 2
+param ( 
+	[Parameter(Mandatory=$true)] 
+	[regex] $pattern,
+	[string] $filter = "*.*",
+	[switch] $recurse = $true,
+	[switch] $caseSensitive = $false,
+	[int[]] $context = 0
+)
+
+if ((-not $caseSensitive) -and (-not $pattern.Options -match "IgnoreCase")) {
+	$pattern = New-Object regex $pattern.ToString(),@($pattern.Options,"IgnoreCase")
+}
+
+Get-ChildItem -recurse:$recurse -filter:$filter |
+	Select-String -caseSensitive:$caseSensitive -pattern:$pattern -AllMatches -context $context | 
+	Out-ColorMatchInfo
