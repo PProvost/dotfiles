@@ -46,37 +46,58 @@ param(
 	[switch] $checkForUpdate = $false
 )
 
+# Globals
+$restartChrome = $false
+$last_change_url = "http://commondatastorage.googleapis.com/chromium-browser-continuous/Win/LAST_CHANGE"
+$dl_rool_url = "http://commondatastorage.googleapis.com/chromium-browser-continuous/index.html?path=Win/"
+$installed_version_file = (join-path $env:LOCALAPPDATA "Chromium\Application\LATEST")
+
+# Reads the latest build number from the LATEST file on the build server
 function GetLatestVersion {
 	$response = Invoke-WebRequest $last_change_url
 
-	if ($res.StatusCode -ne 200) {
-		Write-Error ("{0} received trying to get last nightly build number" -f $res.StatusCode)
-		return
+	if ($response.StatusCode -ne 200) {
+		$errorMsg = ("{0} received trying to get last nightly build number from {1}" -f $response.StatusCode, $last_change_url)
+		throw $errorMsg
 	}
 
 	return $response.Content
 }
 
 function GetInstalledVersion {
-
+	Get-Content $installed_version_file
 }
 
+function Write-CurrentVersionInfo {
+	Write-Host ("Latest version is {0}" -f $(GetLatestVersion))
+	Write-Host ("Current version is {0}" -f $(GetInstalledVersion))
+}
+
+# -openBuildBot handler
 if ($openBuildBot) {
 	[Diagnostics.Process]::Start("http://build.chromium.org/p/chromium/waterfall")
-	return
+	exit $LastExitCode
 }
 
+# -checkForUpdate handler
 if ($checkForUpdate) {
-	Write-Host ("Latest version is {0}" -f $(GetLatestVersion))
+	Write-CurrentVersionInfo
 	return
 }
 
-$restartChrome = false
-$last_change_url = "http://commondatastorage.googleapis.com/chromium-browser-continuous/Win/LAST_CHANGE"
-$dl_rool_url = "http://commondatastorage.googleapis.com/chromium-browser-continuous/index.html?path=Win/"
+# Do they already have this version installed?
+# TODO: -force flag
+if ([string]::compare($version, "latest", $false)) {
+	Write-Host "Determining latest version"
+	$version = GetLatestVersion
+} 
+if ($version -eq $(GetInstalledVersion)) {
+	Write-Host "You already have the requested version."
+	Write-CurrentVersionInfo
+	exit 0
+}
 
-Write-host "Updating Chromium browser from the BuildBot http://build.chromium.org/p/chromium/waterfall" -fore Yellow
-
+# Check to see if Chromium is running, and prompt before killing it
 $proc = Get-Process "chrome" -ErrorAction SilentlyContinue
 if ($proc -ne $null) {
 	Write-Host "Chromium is currently running!" -fore Yellow
@@ -90,23 +111,31 @@ if ($proc -ne $null) {
 	}
 }
 
-if ([string]::compare($version, "latest", $false)) {
-	Write-Host "Determining latest version"
-	$version = GetLatestVersion
-} 
+# Let's roll!
+Write-host "Updating Chromium browser from the BuildBot http://build.chromium.org/p/chromium/waterfall" -fore Yellow
 
+# Download the installer
 $url = $dl_rool_url + $version
 $download_url = ("http://commondatastorage.googleapis.com/chromium-browser-continuous/Win/{0}/mini_installer.exe" -f $version)
-
 Write-Output ("Downloading version {0} from {1}" -f $version,$download_url)
 $file = Get-WebFile -url $download_url -filename (join-path $env:temp "mini_installer.exe")
 
+# Launch the installer and wait for it
 Write-Output ("Executing {0}" -f $file)
-& $file
+Start-Process $file -Wait
+if ($LastExitCode -ne 0) {
+	Write-Error "An error occurred running mini_installer.exe"
+	exit 1
+}
 
+# Update our own version file (since the chromium CI builds don't have this in their version resource)
+$version > $installed_version_file
+
+# Cleanup after ourselves
 Write-Output ("Deleting temp file {0}" -f $file)
-Remove-Item $file
-
+Remove-Item $file -ErrorAction Continue
 if ($restartChrome -eq $true) {
 	& (join-path $env:LOCALAPPDATA "Chromium\Application\chrome.exe") --restore-last-session
 }
+
+exit 0
