@@ -18,8 +18,10 @@ if (-not $global:home) { $global:home = (resolve-path ~) }
 $dotfiles = resolve-path ~/dotfiles/
 $scripts = join-path $dotfiles "powershell"
 
-# Modules are stored here
-$env:PSModulePath = join-path $scripts modules
+# Update module path to include mine
+$global:PSDefaultModulePath = $env:PSModulePath
+$myModulePath = (join-path $scripts modules)
+$env:PSModulePath = $myModulePath + ";" + $env:PSModulePath
 
 # Load in support modules
 Import-Module "Pscx" -Arg (join-path $scripts Pscx.UserPreferences.ps1)
@@ -27,6 +29,7 @@ Import-Module "PowerTab" -ArgumentList (join-path $scripts PowerTabConfig.xml)
 Import-Module "Posh-Git"
 Import-Module "Posh-Hg"
 Import-Module "Posh-Svn"
+Import-Module "PSScheduledJob"
 
 # Install my custom types and formatters
 # Update-TypeData -PrependPath $scripts\MyTypes.ps1xml
