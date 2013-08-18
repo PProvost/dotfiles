@@ -41,3 +41,6 @@
 [submodule ".vim/bundle/vimple"]
 	path = .vim/bundle/vimple
 	url = git://github.com/dahu/vimple.git
+[submodule ".\\.vim\\bundle\\vim-less"]
+	path = .vim/bundle/vim-less
+	url = https://github.com/groenewege/vim-less
