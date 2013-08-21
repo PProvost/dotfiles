@@ -114,5 +114,9 @@ $env:TERM = "msys"
 # Global aliases
 . (join-path $scripts "Aliases.ps1")
 
-# Path tweaks
-add-pathVariable $scripts
+# Add PS1 scripts directory to path
+Add-PathVariable $scripts
+
+# Add Node.js directories to path
+Add-PathVariable $(join-path $env:ProgramFiles "nodejs")
+Add-PathVariable $(join-path $env:APPDATA "npm")
