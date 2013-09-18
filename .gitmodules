@@ -47,3 +47,6 @@
 [submodule "powershell/modules/psake"]
 	path = powershell/modules/psake
 	url = https://github.com/psake/psake.git
+[submodule ".vim/bundle/nerdtree"]
+	path = .vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
