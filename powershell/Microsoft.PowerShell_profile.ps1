@@ -22,4 +22,4 @@ set-alias sleep invoke-systemSleep -force
 set-alias lock invoke-terminalLock
 
 # My PowerTab color theme
-import-tabExpansionTheme -LiteralPath $scripts\TabExpansionTheme.csv
+# import-tabExpansionTheme -LiteralPath $scripts\TabExpansionTheme.csv

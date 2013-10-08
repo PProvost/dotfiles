@@ -25,7 +25,7 @@ $env:PSModulePath = $myModulePath + ";" + $env:PSModulePath
 
 # Load in support modules
 Import-Module "Pscx" -Arg (join-path $scripts Pscx.UserPreferences.ps1)
-Import-Module "PowerTab" -ArgumentList (join-path $scripts PowerTabConfig.xml)
+# Import-Module "PowerTab" -ArgumentList (join-path $scripts PowerTabConfig.xml)
 Import-Module "Posh-Git"
 Import-Module "Posh-Hg"
 Import-Module "Posh-Svn"
