@@ -56,3 +56,9 @@
 [submodule "powershell/modules/TabExpansionPlusPlus"]
 	path = powershell/modules/TabExpansionPlusPlus
 	url = https://github.com/lzybkr/TabExpansionPlusPlus.git
+[submodule ".vim/bundle/vim-javascript"]
+	path = .vim/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
+[submodule ".vim/bundle/typescript-vim"]
+	path = .vim/bundle/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim.git
