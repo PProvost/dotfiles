@@ -1,3 +1,5 @@
 set clipboard+=unnamed " Yanks to the clipboard plz
 set incsearch
 
+// https://github.com/jaredpar/VsVim/wiki/FAQ#backspace
+set backspace=indent,eol,start

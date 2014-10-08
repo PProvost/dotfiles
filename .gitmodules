@@ -62,3 +62,10 @@
 [submodule ".vim/bundle/typescript-vim"]
 	path = .vim/bundle/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim.git
+[submodule ".vim/bundle/vim-mustache-handlebars"]
+	path = .vim/bundle/vim-mustache-handlebars
+	url = https://github.com/mustache/vim-mustache-handlebars.git
+[submodule ".vim/bundle/grunt.vim"]
+	path = .vim/bundle/grunt.vim
+	url = https://github.com/mklabs/grunt.vim.git
+
