@@ -18,6 +18,7 @@ set-alias logout invoke-userLogout
 set-alias halt invoke-systemShutdown
 set-alias restart invoke-systemReboot
 if (test-path alias:\sleep) { remove-item alias:\sleep -force }
+if (test-path alias:curl) { remove-item alias:curl -force }
 set-alias sleep invoke-systemSleep -force
 set-alias lock invoke-terminalLock
 

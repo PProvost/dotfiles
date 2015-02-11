@@ -69,3 +69,9 @@
 	path = .vim/bundle/grunt.vim
 	url = https://github.com/mklabs/grunt.vim.git
 
+[submodule ".vim/bundle/vim-arduino-syntax"]
+	path = .vim/bundle/vim-arduino-syntax
+	url = https://github.com/sudar/vim-arduino-syntax.git
+[submodule ".vim/bundle/groovyindent"]
+	path = .vim/bundle/groovyindent
+	url = https://github.com/vim-scripts/groovyindent.git
