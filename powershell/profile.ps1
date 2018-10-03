@@ -24,12 +24,23 @@ $myModulePath = (join-path $scripts modules)
 $env:PSModulePath = $myModulePath + ";" + $env:PSModulePath
 
 # Load in support modules
-Import-Module "Pscx" -Arg (join-path $scripts Pscx.UserPreferences.ps1)
+# Import-Module "Pscx" -Arg (join-path $scripts Pscx.UserPreferences.ps1)
 # Import-Module "PowerTab" -ArgumentList (join-path $scripts PowerTabConfig.xml)
-Import-Module "Posh-Git"
-Import-Module "Posh-Hg"
-Import-Module "Posh-Svn"
-Import-Module "PSScheduledJob"
+# Import-Module "Posh-Git"
+# Import-Module "Posh-Hg"
+# Import-Module "Posh-Svn"
+# Import-Module "PSScheduledJob"
+Import-Module "PSReadLine"
+
+# Setup PSReadLine
+Set-PSReadLineOption -HistoryNoDuplicate
+Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+Set-PSReadLineOption -HistorySaveStyle SaveIncrementally
+Set-PSReadLineOption -MaximumHistoryCount 4000
+Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+Set-PSReadLineKeyHandler -Chord 'Shift+Tab' -Function Complete
+Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 
 # Install my custom types and formatters
 # Update-TypeData -PrependPath $scripts\MyTypes.ps1xml
@@ -78,7 +89,7 @@ function get-scriptdirectory {
 	}
 }
 
-function get-isAdminUser() {
+function Test-AdminUser() {
 	$id = [Security.Principal.WindowsIdentity]::GetCurrent()
 	$wp = new-object Security.Principal.WindowsPrincipal($id)
 	return $wp.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
@@ -88,10 +99,11 @@ $global:promptTheme = @{
 	prefixColor = [ConsoleColor]::Cyan
 	pathColor = [ConsoleColor]::Cyan
 	pathBracesColor = [ConsoleColor]::DarkCyan
-	hostNameColor = ?: { get-isAdminUser } { [ConsoleColor]::Red } { [ConsoleColor]::Green }
+	hostNameColor = if (Test-AdminUser) { [ConsoleColor]::Red } else { [ConsoleColor]::Green }
 }
 
 function prompt {
+  $origLastExitCode = $LastExitCode
 	$prefix = [char]0x221e + " "
 	$hostName = [net.dns]::GetHostName().ToLower()
 	$shortPath = get-vimShortPath(get-location)
@@ -101,8 +113,9 @@ function prompt {
 	write-host ' {' -noNewLine -foregroundColor $promptTheme.pathBracesColor
 	write-host $shortPath -noNewLine -foregroundColor $promptTheme.pathColor
 	write-host '}' -noNewLine -foregroundColor $promptTheme.pathBracesColor
-	write-vcsStatus # from posh-git, posh-hg and posh-svn
-	return ' '
+	# write-vcsStatus # from posh-git, posh-hg and posh-svn
+	$LastExitCode = $origLastExitCode
+	"> "
 }
 
 # UNIX friendly environment variables
@@ -118,5 +131,5 @@ $env:TERM = "msys"
 Add-PathVariable $scripts
 
 # Add Node.js directories to path
-Add-PathVariable $(join-path $env:ProgramFiles "nodejs")
-Add-PathVariable $(join-path $env:APPDATA "npm")
+# Add-PathVariable $(join-path $env:ProgramFiles "nodejs")
+# Add-PathVariable $(join-path $env:APPDATA "npm")

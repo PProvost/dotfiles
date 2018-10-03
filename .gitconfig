@@ -24,7 +24,7 @@
 	keepBackup = false
 	trustExitCode = false
 [core]
-	editor = gvim.exe
+	editor = vim.exe
 	autocrlf = true
 	excludesfile = ~/.gitignore
 [alias]

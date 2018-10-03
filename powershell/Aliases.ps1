@@ -11,7 +11,4 @@ set-alias sudo Invoke-Elevated
 set-alias unset remove-variable
 set-alias whence get-commandInfoEx
 
-if (get-module psake) {
-	set-alias psake "$(split-path (get-module psake).Path)\psake.ps1"
-}
-
+set-alias gvim "$(join-path ${env:ProgramFiles(x86)} vim\vim81\gvim.exe)"

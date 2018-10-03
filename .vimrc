@@ -27,14 +27,15 @@ if has("gui_running")
 	set lines=45
 	set guifont=Consolas:h11:cANSI,Lucida\ Console,Courier\ New,System
 	set guioptions-=T " No toolbar
-	colorscheme solarized
+	" colorscheme solarized
+	colorscheme slate
 else
 	set background=dark
 	colorscheme slate
 endif
 
 " Platform specific stuff
-if has("win32") || has("win64")
+if has("win32") || has("win64") || has("windows")
 	set directory=$TMP
 else
 	set directory /tmp

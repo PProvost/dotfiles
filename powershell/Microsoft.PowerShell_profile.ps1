@@ -1,11 +1,6 @@
 # Profile setup for the console host shell
 # Will not be loaded by other hosts (e.g. VS11 Package Manager)
 
-# A little holder for a few Wow-related directories :)
-$wow = new-object System.Object
-$wow | add-Member -type NoteProperty -name "Addons" -value "C:\World of Warcraft\Interface\Addons"
-$wow | add-Member -type NoteProperty -name "WTF" -value "C:\World of Warcraft\WTF"
-
 # Helper functions for user/computer session management
 function invoke-userLogout { shutdown /l /t 0 }
 function invoke-systemShutdown { shutdown /s /t 5 }
