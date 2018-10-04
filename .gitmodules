@@ -9,10 +9,6 @@
 [submodule "powershell/modules/posh-git"]
 	path = powershell/modules/posh-git
 	url = https://github.com/dahlbyk/posh-git.git
-[submodule "powershell/modules/posh-svn"]
-	path = powershell/modules/posh-svn
-	url = git@github.com:PProvost/posh-svn.git
-	ignore = dirty
 [submodule "powershell/modules/PowerTab"]
 	path = powershell/modules/PowerTab
 	url = git@github.com:PProvost/PowerTab.git
