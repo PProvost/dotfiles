@@ -62,3 +62,6 @@
 [submodule ".vim/bundle/groovyindent"]
 	path = .vim/bundle/groovyindent
 	url = https://github.com/vim-scripts/groovyindent.git
+[submodule "cmd-colors-solarized"]
+	path = cmd-colors-solarized
+	url = git@github.com:PProvost/cmd-colors-solarized.git
