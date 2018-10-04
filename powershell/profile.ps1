@@ -24,13 +24,8 @@ $myModulePath = (join-path $scripts modules)
 $env:PSModulePath = $myModulePath + ";" + $env:PSModulePath
 
 # Load in support modules
-# Import-Module "Pscx" -Arg (join-path $scripts Pscx.UserPreferences.ps1)
-# Import-Module "PowerTab" -ArgumentList (join-path $scripts PowerTabConfig.xml)
-# Import-Module "Posh-Git"
-# Import-Module "Posh-Hg"
-# Import-Module "Posh-Svn"
-# Import-Module "PSScheduledJob"
 Import-Module "PSReadLine"
+Import-Module (join-path $myModulePath 'posh-git\src\posh-git.psd1')
 
 # Setup PSReadLine
 Set-PSReadLineOption -HistoryNoDuplicate
@@ -108,14 +103,17 @@ function prompt {
 	$hostName = [net.dns]::GetHostName().ToLower()
 	$shortPath = get-vimShortPath(get-location)
 
-	write-host $prefix -noNewLine -foregroundColor $promptTheme.prefixColor
-	write-host $hostName -noNewLine -foregroundColor $promptTheme.hostNameColor
-	write-host ' {' -noNewLine -foregroundColor $promptTheme.pathBracesColor
-	write-host $shortPath -noNewLine -foregroundColor $promptTheme.pathColor
-	write-host '}' -noNewLine -foregroundColor $promptTheme.pathBracesColor
-	# write-vcsStatus # from posh-git, posh-hg and posh-svn
+	$prompt = ""
+	$prompt += 	write-prompt $prefix -foregroundColor $promptTheme.prefixColor
+	$prompt += 	write-prompt $hostName -foregroundColor $promptTheme.hostNameColor
+	$prompt += 	write-prompt ' {' -foregroundColor $promptTheme.pathBracesColor
+	$prompt += 	write-prompt $shortPath -foregroundColor $promptTheme.pathColor
+	$prompt += 	write-prompt '}' -foregroundColor $promptTheme.pathBracesColor
+	$prompt += 	write-vcsstatus
+	$prompt += 	write-prompt "> "
+
 	$LastExitCode = $origLastExitCode
-	"> "
+	$prompt	
 }
 
 # UNIX friendly environment variables

@@ -11,4 +11,4 @@ set-alias sudo Invoke-Elevated
 set-alias unset remove-variable
 set-alias whence get-commandInfoEx
 
-set-alias gvim "$(join-path ${env:ProgramFiles(x86)} vim\vim81\gvim.exe)"
+# set-alias gvim "$(join-path ${env:ProgramFiles(x86)} vim\vim81\gvim.exe)"

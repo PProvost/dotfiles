@@ -16,6 +16,3 @@ if (test-path alias:\sleep) { remove-item alias:\sleep -force }
 if (test-path alias:curl) { remove-item alias:curl -force }
 set-alias sleep invoke-systemSleep -force
 set-alias lock invoke-terminalLock
-
-# My PowerTab color theme
-# import-tabExpansionTheme -LiteralPath $scripts\TabExpansionTheme.csv
