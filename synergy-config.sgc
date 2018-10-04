@@ -1,0 +1,35 @@
+section: screens
+	peterpr-desktop:
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
+		switchCorners = none 
+		switchCornerSize = 0
+	peterpr-yoga:
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
+		switchCorners = none 
+		switchCornerSize = 0
+end
+
+section: aliases
+end
+
+section: links
+	peterpr-desktop:
+		right = peterpr-yoga
+	peterpr-yoga:
+		left = peterpr-desktop
+end
+
+section: options
+	relativeMouseMoves = false
+	screenSaverSync = false
+	win32KeepForeground = false
+	switchCorners = none 
+	switchCornerSize = 0
+end
+
