@@ -37,9 +37,6 @@
 [submodule ".\\.vim\\bundle\\vim-less"]
 	path = .vim/bundle/vim-less
 	url = https://github.com/groenewege/vim-less
-[submodule "powershell/modules/psake"]
-	path = powershell/modules/psake
-	url = https://github.com/psake/psake.git
 [submodule ".vim/bundle/nerdtree"]
 	path = .vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
