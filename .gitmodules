@@ -53,9 +53,6 @@
 [submodule ".vim/bundle/html5.vim"]
 	path = .vim/bundle/html5.vim
 	url = https://github.com/othree/html5.vim.git
-[submodule "powershell/modules/TabExpansionPlusPlus"]
-	path = powershell/modules/TabExpansionPlusPlus
-	url = https://github.com/lzybkr/TabExpansionPlusPlus.git
 [submodule ".vim/bundle/vim-javascript"]
 	path = .vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
