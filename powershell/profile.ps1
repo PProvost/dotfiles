@@ -25,7 +25,6 @@ $env:PSModulePath = $myModulePath + ";" + $env:PSModulePath
 
 # Load in support modules
 Import-Module "PSReadLine"
-Import-Module (join-path $myModulePath 'posh-git\src\posh-git.psd1')
 
 # Setup PSReadLine
 Set-PSReadLineOption -HistoryNoDuplicate
@@ -98,22 +97,24 @@ $global:promptTheme = @{
 }
 
 function prompt {
-  $origLastExitCode = $LastExitCode
+	$origLastExitCode = $LASTEXITCODE
 	$prefix = [char]0x221e + " "
 	$hostName = [net.dns]::GetHostName().ToLower()
 	$shortPath = get-vimShortPath(get-location)
 
 	$prompt = ""
+
 	$prompt += 	write-prompt $prefix -foregroundColor $promptTheme.prefixColor
 	$prompt += 	write-prompt $hostName -foregroundColor $promptTheme.hostNameColor
 	$prompt += 	write-prompt ' {' -foregroundColor $promptTheme.pathBracesColor
 	$prompt += 	write-prompt $shortPath -foregroundColor $promptTheme.pathColor
 	$prompt += 	write-prompt '}' -foregroundColor $promptTheme.pathBracesColor
-	$prompt += 	write-vcsstatus
-	$prompt += 	write-prompt "> "
+	$prompt += Write-VcsStatus
+	$prompt += Write-Prompt "$(if ($PsDebugContext) {' [DBG]: '} else {''})" -ForegroundColor Magenta
+	$prompt += "$('>' * ($nestedPromptLevel + 1)) "
 
-	$LastExitCode = $origLastExitCode
-	$prompt	
+	$LASTEXITCODE = $origLastExitCode
+	$prompt
 }
 
 # UNIX friendly environment variables
@@ -126,7 +127,8 @@ $env:TERM = "msys"
 . (join-path $scripts "Aliases.ps1")
 
 # Add PS1 scripts directory to path
-Add-PathVariable $scripts
+# Add-PathVariable $scripts
+$env:path += ";$scripts"
 
 # Add Node.js directories to path
 # Add-PathVariable $(join-path $env:ProgramFiles "nodejs")
