@@ -96,26 +96,27 @@ $global:promptTheme = @{
 	hostNameColor = if (Test-AdminUser) { [ConsoleColor]::Red } else { [ConsoleColor]::Green }
 }
 
-function prompt {
-	$origLastExitCode = $LASTEXITCODE
-	$prefix = [char]0x221e + " "
-	$hostName = [net.dns]::GetHostName().ToLower()
-	$shortPath = get-vimShortPath(get-location)
 
-	$prompt = ""
+# function prompt {
+# 	$origLastExitCode = $LASTEXITCODE
+# 	$prefix = [char]0x221e + " "
+# 	$hostName = [net.dns]::GetHostName().ToLower()
+# 	$shortPath = get-vimShortPath(get-location)
 
-	$prompt += 	write-prompt $prefix -foregroundColor $promptTheme.prefixColor
-	$prompt += 	write-prompt $hostName -foregroundColor $promptTheme.hostNameColor
-	$prompt += 	write-prompt ' {' -foregroundColor $promptTheme.pathBracesColor
-	$prompt += 	write-prompt $shortPath -foregroundColor $promptTheme.pathColor
-	$prompt += 	write-prompt '}' -foregroundColor $promptTheme.pathBracesColor
-	$prompt += Write-VcsStatus
-	$prompt += Write-Prompt "$(if ($PsDebugContext) {' [DBG]: '} else {''})" -ForegroundColor Magenta
-	$prompt += "$('>' * ($nestedPromptLevel + 1)) "
+# 	$prompt = ""
 
-	$LASTEXITCODE = $origLastExitCode
-	$prompt
-}
+# 	$prompt += 	write-prompt $prefix -foregroundColor $promptTheme.prefixColor
+# 	$prompt += 	write-prompt $hostName -foregroundColor $promptTheme.hostNameColor
+# 	$prompt += 	write-prompt ' {' -foregroundColor $promptTheme.pathBracesColor
+# 	$prompt += 	write-prompt $shortPath -foregroundColor $promptTheme.pathColor
+# 	$prompt += 	write-prompt '}' -foregroundColor $promptTheme.pathBracesColor
+# 	$prompt += Write-VcsStatus
+# 	$prompt += Write-Prompt "$(if ($PsDebugContext) {' [DBG]: '} else {''})" -ForegroundColor Magenta
+# 	$prompt += "$('>' * ($nestedPromptLevel + 1)) "
+
+# 	$LASTEXITCODE = $origLastExitCode
+# 	$prompt
+# }
 
 # UNIX friendly environment variables
 $env:EDITOR = "gvim"
@@ -133,3 +134,5 @@ $env:path += ";$scripts"
 # Add Node.js directories to path
 # Add-PathVariable $(join-path $env:ProgramFiles "nodejs")
 # Add-PathVariable $(join-path $env:APPDATA "npm")
+
+Import-Module 'C:\Users\peter_000\dotfiles\powershell\modules\posh-git\src\posh-git.psd1'
